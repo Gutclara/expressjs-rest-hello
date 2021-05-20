@@ -1,5 +1,5 @@
 import {
-  Entity, Column, PrimaryGeneratedColumn, ManyToMany, 
+  Entity, Column, PrimaryGeneratedColumn, ManyToOne, 
   BaseEntity, JoinTable
 } from 'typeorm';
 
@@ -16,5 +16,6 @@ export class ToDos extends BaseEntity{
   @Column()
   done: string;
 
-  
+  @ManyToOne(() => Users, user => user.id)
+  user: Users;
 }
