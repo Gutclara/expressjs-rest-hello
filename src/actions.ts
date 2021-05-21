@@ -59,9 +59,9 @@ export const putEditToDo = async (req: Request, res: Response): Promise<Response
 
         if(!req.body.label) throw new Exception("Please put your task here (label)") 
         if(!req.body.done) throw new Exception("Please enter done or not (done)")
-        if(!req.body.userid) throw new Exception("Please enter your id (userid)")
+        if(!req.params.todoid) throw new Exception("Please enter your id (userid)")
 
-        let editTodo = await getRepository(ToDos).findOne({where:{userid:req.body.userid}})
+        let editTodo = await getRepository(ToDos).findOne({where:{id:req.params.todoid}})
         if (!editTodo) throw new Exception("This tasks doesnt exist")//se fija si el campo de tarea esta vacio. si esta vacio no hay nada qu editar
         editTodo.label = req.body.label
         editTodo.done = req.body.done

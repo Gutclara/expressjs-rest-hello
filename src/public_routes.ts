@@ -23,7 +23,7 @@ router.get('/todos/user/:userid', safe(getAllToDos));
 
 router.post('/todos/user', safe(postNewToDo));
 
-router.put('/todos/user', safe(putEditToDo));
+router.put('/todos/user/:todoid', safe(putEditToDo));
 
 router.delete('/todos/user/:todoid', safe(deleteTodo));
 

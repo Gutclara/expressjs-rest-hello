@@ -143,9 +143,9 @@ var putEditToDo = function (req, res) { return __awaiter(void 0, void 0, void 0,
                     throw new utils_1.Exception("Please put your task here (label)");
                 if (!req.body.done)
                     throw new utils_1.Exception("Please enter done or not (done)");
-                if (!req.body.userid)
+                if (!req.params.todoid)
                     throw new utils_1.Exception("Please enter your id (userid)");
-                return [4 /*yield*/, typeorm_1.getRepository(ToDos_1.ToDos).findOne({ where: { userid: req.body.userid } })];
+                return [4 /*yield*/, typeorm_1.getRepository(ToDos_1.ToDos).findOne({ where: { id: req.params.todoid } })];
             case 1:
                 editTodo = _a.sent();
                 if (!editTodo)
