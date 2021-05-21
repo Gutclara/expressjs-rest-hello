@@ -17,5 +17,5 @@ export class ToDos extends BaseEntity{
   done: string;
 
   @ManyToOne(() => Users, user => user.id)
-  user: Users;
+  userid: Users;
 }
