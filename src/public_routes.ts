@@ -25,6 +25,6 @@ router.post('/todos/user', safe(postNewToDo));
 
 router.put('/todos/user', safe(putEditToDo));
 
-router.delete('/todos/user', safe(deleteTodo));
+router.delete('/todos/user/:todoid', safe(deleteTodo));
 
 export default router;

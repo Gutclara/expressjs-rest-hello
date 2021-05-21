@@ -24,45 +24,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.Users = void 0;
+exports.ToDos = void 0;
 var typeorm_1 = require("typeorm");
-var ToDos_1 = require("./ToDos");
-var Users = /** @class */ (function (_super) {
-    __extends(Users, _super);
-    function Users() {
+var Users_1 = require("./Users");
+var ToDos = /** @class */ (function (_super) {
+    __extends(ToDos, _super);
+    function ToDos() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], Users.prototype, "id");
-    __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], Users.prototype, "user_name");
+    ], ToDos.prototype, "id");
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], Users.prototype, "first_name");
+    ], ToDos.prototype, "label");
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], Users.prototype, "last_name");
+    ], ToDos.prototype, "done");
     __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], Users.prototype, "email");
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "password");
-    __decorate([
-        typeorm_1.OneToMany(function () { return ToDos_1.ToDos; }, function (todo) { return todo.id; }),
-        __metadata("design:type", Array)
-    ], Users.prototype, "todo");
-    Users = __decorate([
+        typeorm_1.ManyToOne(function () { return Users_1.Users; }, function (user) { return user.id; }),
+        __metadata("design:type", Users_1.Users)
+    ], ToDos.prototype, "userid");
+    ToDos = __decorate([
         typeorm_1.Entity()
-    ], Users);
-    return Users;
+    ], ToDos);
+    return ToDos;
 }(typeorm_1.BaseEntity));
-exports.Users = Users;
+exports.ToDos = ToDos;

@@ -56,11 +56,23 @@ export const postNewToDo = async (req: Request, res: Response): Promise<Response
 }
 
 export const putEditToDo = async (req: Request, res: Response): Promise<Response> =>{
-		const users = await getRepository(Users).find();
-		return res.json(users);
+
+        if(!req.body.label) throw new Exception("Please put your task here (label)") 
+        if(!req.body.done) throw new Exception("Please enter done or not (done)")
+        if(!req.body.userid) throw new Exception("Please enter your id (userid)")
+
+        let editTodo = await getRepository(ToDos).findOne({where:{userid:req.body.userid}})
+        if (!editTodo) throw new Exception("This tasks doesnt exist")//se fija si el campo de tarea esta vacio. si esta vacio no hay nada qu editar
+        editTodo.label = req.body.label
+        editTodo.done = req.body.done
+        
+        const results = await getRepository(ToDos).save(editTodo)
+        return res.json(editTodo);
 }
 
 export const deleteTodo = async (req: Request, res: Response): Promise<Response> =>{
-		const users = await getRepository(Users).find();
-		return res.json(users);
+        const deleteTodo = await getRepository(ToDos).find({where:{id:req.params.todoid}});
+        if (!deleteTodo) throw new Exception ("nothing to delete")
+        let result = await getRepository(ToDos).delete(req.params.todoid)
+		return res.json(result);
 }
